@@ -1,11 +1,15 @@
 class Solution:
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-
+    def groupAnagrams(self, strs):
         groups = {}
 
         for word in strs:
+            count = [0] * 26
 
-            key = "".join(sorted(word))
+            for char in word:
+                index = ord(char) - ord('a')
+                count[index] += 1
+
+            key = tuple(count)
 
             if key not in groups:
                 groups[key] = []
